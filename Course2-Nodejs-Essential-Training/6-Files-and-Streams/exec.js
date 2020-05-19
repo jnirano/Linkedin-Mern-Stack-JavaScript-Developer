@@ -6,9 +6,10 @@ const cp = require("child_process");
 // cp.exec("open http://www.linkedin.com/learning");
 cp.exec("open -a Terminal .");
 
+//Example 3
 
-// const cp = require("child_process");
+const cp = require("child_process");
 
-// cp.exec("node readStream", (err, data, stderr) => {
-//    console.log(data);
-// });
+cp.exec("node readStream", (err, data, stderr) => {
+   console.log(data);
+});
