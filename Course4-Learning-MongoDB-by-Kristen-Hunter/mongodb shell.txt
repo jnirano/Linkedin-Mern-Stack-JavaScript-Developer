@@ -1,0 +1,106 @@
+To Run MongoDB Shell
+open terminal run type mongod press return key. open another terminal type mongo press return key.
+db
+
+SHELL COMMAND USED  
+
+db
+use learning_MongoDB
+db
+show dbs
+db.cars.insert({"makee": "Subaru"})
+show dbs
+show collections
+print("test")
+var arr=["one","two","three"]
+arr
+for(i=0;i<5000;i++) {db.numbers.insert( {"number": i})}
+db.numbers.count()
+db.numbers.find({"number":1})
+db.numbers.find({"number":1}).explain()
+db.numbers.find({"number":1}).explain("executionStats")
+db.numbers.createIndex({"number":1})
+
+press ctrl c to exit from mongo shell & execute the command below inside the terminal
+mongoimport --help
+
+mongoimport --db learning_mongo --collection tours --jsonArray --file tours.json (NB: Make sure you cd into the directory where your file is located or where the tours.json file is located).
+
+TYPE mongo press return key to go back to the mongo shell
+use learning_mongo
+show collections
+db.tours.count()
+db.tours.find({"tourTags":"hiking"})
+
+USING MONGO SHELL OPERATIONS: for the database created above. The basic mongo shell operations are the REST API operations called CRUD. Create 
+
+run mongo shell, switched into learning_mongo database (use learning_mongo) 
+db.tours.find({"tourTags":"wine"})
+
+//CREATE Mongo Shell Operation
+db.tours.insert({"tourName":"The wine of Santa Cruz", "tourLength":3, "tourDescription": "Discover Santa Cruz wineries", "tourPrice":500, "tourTags":["Wine","Santa Cruz"]})
+
+db.tours.insert({"tourName":"The wine of Game test", "tourLength":4, "tourDescription": "Discover new game test wineries", "tourPrice":600, "tourTags":["Wine","game test"]})
+
+//READ Mongo Shell Operation
+db.tours.find({"tourTags":"wine"})
+
+//UPDATING Mongo Shell Operation not working
+db.tours.update({"tourName":"The wines of Santa Cruz"},{$set:{"tourRegion":"Central Coast"}})
+db.tours.find({"tourTags":"wine"})
+
+db.tours.update({"tourName":"The wine of Game test"},{$set:{"tourRegion":"Lagos State"}})
+
+db.tours.find({"tourTags":"wine"})
+db.tours.find({"tourTags":"game test"})
+
+// To add a new entry in tourTags for the document without removing the existing one.
+db.tours.update({"tourName":"The wines of Santa Cruz"},{$addToSet:{"tourTags":"boardWalk"}})
+
+db.tours.update({"tourName":"Lovely wife I have of Santa Cruz"},{$addToSet:{"tourTags":"wifeGood"}})
+
+db.tours.find({"tourTags":"wine"})
+
+//DELETE Mongo Shell Operation
+db.tours.remove({"tourName":"The wines of Santa Cruz"})
+db.tours.find({"tourTags":"wine"})
+
+db.tours.remove({"tourName":"The wine of Game test"})
+db.tours.find({"tourTags":"game test"})
+
+//To remove a collection
+db.tours.drop()
+
+//SIMPLE INDEXING:
+//Bringing the tour collection back into the database since we removed the collection before.
+
+run the mongo shell and switch to learning_mongo.
+mongoimport --db learning_mongo --collection tours --jsonArray --file tours.json(NB: Make sure you cd into the directory where your file is located or where the tours.json file is located).
+
+NOW USING INDEX
+start up mongo shell and switch to database learning_mongo
+use learning_mongo
+db.tours.find({"tourPackage":"Taste of California"}).explain("executionStats")
+
+//USING SINGLE KEY INDEX
+db.tours.createIndex({tourPackage:1})
+db.tours.find({"tourPrice":{$lte:500}, "tourLength":{$lte:3}})
+db.tours.find({"tourPrice":{$lte:500}, "tourLength":{$lte:3}}).explain("executionStats")
+
+//CREATING A COMPOUND INDEX
+db.tours.createIndex({tourPrice:1, tourLength:1})
+db.tours.find({"tourPrice":{$lte:500}, "tourLength":{$lte:3}}).explain("executionStats")
+
+
+4:-ADVANCE TOPICS
+Unique Indexes
+tart up mongo shell and switch to database learning_mongo
+use learning_mongo
+db.tours.remove({}) //This will remove all collections in db learning_mongo
+db.tours.createIndex({"tourName":1}, {unique:true})
+start another terminal to make it 3 terminals opened 
+mongoimport --collection tours --db learning_mongo --file tours.json --jsonArray
+
+/UNIQUE KEY
+mongoimport --collection tours --db learning_mongo --file tours_id.json --jsonArray
+

@@ -1,0 +1,14 @@
+{
+  "name": "learning_mongo",
+  "version": "1.0.0",
+  "description": "Required libraries for learning_mongo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joel Ogunniran",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.5.7"
+  }
+}
