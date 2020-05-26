@@ -1,0 +1,3 @@
+//BUILDING RESTFUL APIs WITH NODEJS & EXPRESS
+
+A RESTful API is a way to transact with a back end using HTTP transactions. Using a series of calls like GET (This get data or pull data), POST(This add new data), PUT(This update data), and DELETE with an HTML address to transact with our back end and its data.
